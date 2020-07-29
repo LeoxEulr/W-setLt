@@ -1,0 +1,6 @@
+sudo update-grub
+ls /boot/grub/x86_64-efi/ | grep hwmatch
+ls /usr/lib/grub/i386-pc/ | grep hwmatch
+sudo cp -b /usr/lib/grub/i386-pc/hwmatch.mod /boot/grub/x86_64-efi/hwmatch.mod
+sudo find / -iname "*hwmatch*"
+JUST FIND .MOD FILES ON BOOT FOLDER

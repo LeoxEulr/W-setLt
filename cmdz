@@ -1,0 +1,91 @@
+https://www.gnu.org/software/bash/manual/
+
+
+### Check outputs files at "/home/l/Documents"
+[ Command Line Operations ]
+
+l@L-laptop:~$ nano {file_name} ## opens file on the terminal using nano.
+l@L-laptop:~$ echo "{text_to_APPEND_to_file}" >> {file_name}
+l@L-laptop:~$ mv {old_name} {new_name} ## renames a file in the current dir
+l@L-laptop:~$
+l@L-laptop:~$
+l@L-laptop:~$
+
+https://www.gnu.org/software/findutils/manual/html_mono/find.html  **  **  **  **  **  **  **  **  **  **  **
+For ‘-iname’, the match is case-insensitive. To ignore a whole directory tree, use ‘-prune’ (see Directories). 
+l@L-laptop:~$ sudo find . -iname settings.conf
+l@L-laptop:~$ sudo find {path_to_file} -iname {specific_file_name} ## dot . means current directory
+
+l@L-laptop:~$ sudo find . -name "*run_app_wtf*" ## search for content inside the file the user is looking for
+l@L-laptop:~$ sudo find {path_to_file} -name "*{searched_content}*" ## search for content inside the file the user is looking for
+
+l@L-laptop:~$ find {path_to_file} -iname "{BEGINNING_of_file_name}*" ## USE DOUBLEQUOTES ==> "* + {}" = full_file_name
+l@L-laptop:~$ find {path_to_file} -iname "*{END_of_file_name}" ## search using a wildcard NOTICE THAT WILDCARD * CHANGES
+l@L-laptop:~$ sudo find . -iname "*grub*" ==> wildcard on both sides of searched content
+
+l@L-laptop:~$ sudo find / -iname "*grub*" | grep boot
+l@L-laptop:~$ sudo find / -iname "*grub*" | grep boot
+l@L-laptop:~$ sudo find / -iname "*grub*" | grep boot
+============> use (1) "sudo" to make sure you search in all possible folders, (2) "find" file, (3) search for file in the root "/" directory since there is no directory parent to "/", (4) "-iname" match is case-insensitive, (5) " "*grub*" " use DOUBLE wildcards and quotes!
+find: ‘/run/user/1000/gvfs’: Permission denied
+/boot/grub
+/boot/grub/x86_64-efi/grub.efi
+/boot/grub/grubenv
+/boot/grub/grub.cfg
+/boot/efi/EFI/ubuntu/grubx64.efi
+/boot/efi/EFI/ubuntu/grub.cfg
+/usr/sbin/grub-reboot
+/usr/share/man/man8/grub-reboot.8.gz
+/usr/share/bash-completion/completions/grub-reboot
+/usr/lib/linux-boot-probes/mounted/40grub2
+/usr/lib/linux-boot-probes/mounted/40grub
+
+===================================> Finding directories is identical!
+
+l@L-laptop:~$
+l@L-laptop:~$
+l@L-laptop:~$
+
+l@L-laptop:~$ firefox --no-remote & ## still not the best command to open ff
+
+[Shift] + [Ctrl] + [V]or[C] to COPY and PASTE on terminal.
+
+l@L-laptop:~$ sudo efibootmgr ## EFI (Extensible Firmware Interface) boot manager (Unified Extensible Firmware, UEFI)
+l@L-laptop:~$ sudo -i ## become sudo at "/root" directory (works on Ubuntu)
+
+l@L-laptop:~$ systemd-analyze blame
+l@L-laptop:~$ systemd-analyze critical-chain
+
+l@L-laptop:~$ 
+l@L-laptop:~$ 
+l@L-laptop:~$ mount
+l@L-laptop:~$ dmesg
+l@L-laptop:~$ sudo parted -l
+
+
+
+l@L-laptop:~$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.1 LTS
+Release:        20.04
+Codename:       focal
+
+l@L-laptop:~$ cat /etc/*release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=20.04
+DISTRIB_CODENAME=focal
+DISTRIB_DESCRIPTION="Ubuntu 20.04.1 LTS"
+NAME="Ubuntu"
+VERSION="20.04.1 LTS (Focal Fossa)"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 20.04.1 LTS"
+VERSION_ID="20.04"
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+VERSION_CODENAME=focal
+UBUNTU_CODENAME=focal
+

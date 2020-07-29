@@ -1,0 +1,21 @@
+The time when unit became active or started is printed after the "@" character.
+The time the unit took to start is printed after the "+" character.
+
+graphical.target @28.425s
+└─multi-user.target @28.425s
+  └─kerneloops.service @28.337s +86ms
+    └─network-online.target @28.322s
+      └─NetworkManager-wait-online.service @18.525s +9.795s
+        └─NetworkManager.service @14.442s +4.078s
+          └─dbus.service @14.429s
+            └─basic.target @14.312s
+              └─sockets.target @14.312s
+                └─snapd.socket @14.306s +5ms
+                  └─sysinit.target @14.094s
+                    └─snapd.apparmor.service @13.947s +145ms
+                      └─apparmor.service @13.164s +757ms
+                        └─local-fs.target @13.162s
+                          └─run-user-1000.mount @27.544s
+                            └─swap.target @11.754s
+                              └─dev-disk-by\x2duuid-c3814b0a\x2dfd31\x2d4408\x2d938d\x2d70980d4a932e.swap @11.537s +214ms
+                                └─dev-disk-by\x2duuid-c3814b0a\x2dfd31\x2d4408\x2d938d\x2d70980d4a932e.device @11.534s

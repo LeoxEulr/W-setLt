@@ -1,0 +1,75 @@
+9.795s NetworkManager-wait-online.service                                                       
+8.392s networkd-dispatcher.service                                                              
+7.599s dev-sda1.device                                                                          
+7.112s udisks2.service                                                                          
+5.925s accounts-daemon.service                                                                  
+4.245s polkit.service                                                                           
+4.078s NetworkManager.service                                                                   
+3.975s avahi-daemon.service                                                                     
+3.971s bluetooth.service                                                                        
+3.918s dundee.service                                                                           
+3.590s ModemManager.service                                                                     
+3.587s ofono.service                                                                            
+3.350s thermald.service                                                                         
+3.344s wpa_supplicant.service                                                                   
+3.338s systemd-logind.service                                                                   
+3.219s systemd-journal-flush.service                                                            
+2.632s systemd-udevd.service                                                                    
+2.330s apport.service                                                                           
+2.320s grub-common.service                                                                      
+2.110s gpu-manager.service                                                                      
+1.953s secureboot-db.service                                                                    
+1.919s systemd-resolved.service                                                                 
+1.646s rsyslog.service                                                                          
+1.465s systemd-fsck@dev-disk-by\x2duuid-D66D\x2dE466.service                                    
+1.419s e2scrub_reap.service                                                                     
+1.307s grub-initrd-fallback.service                                                             
+ 955ms user@1000.service                                                                        
+ 921ms systemd-fsck@dev-disk-by\x2duuid-49a86d91\x2dc217\x2d4268\x2d9014\x2d90c563913ebf.service
+ 757ms apparmor.service                                                                         
+ 715ms alsa-restore.service                                                                     
+ 666ms pppd-dns.service                                                                         
+ 664ms upower.service                                                                           
+ 640ms keyboard-setup.service                                                                   
+ 605ms systemd-udev-trigger.service                                                             
+ 537ms systemd-rfkill.service                                                                   
+ 515ms systemd-modules-load.service                                                             
+ 474ms systemd-backlight@backlight:intel_backlight.service                                      
+ 422ms systemd-sysusers.service                                                                 
+ 399ms systemd-journald.service                                                                 
+ 389ms systemd-sysctl.service                                                                   
+ 383ms home.mount                                                                               
+ 359ms snapd.service                                                                    
+ 352ms systemd-timesyncd.service                                                                
+ 333ms systemd-tmpfiles-setup-dev.service                                                       
+ 294ms systemd-random-seed.service                                                              
+ 253ms ufw.service                                                                              
+ 234ms systemd-tmpfiles-setup.service                                                           
+ 216ms snapd.seeded.service                                                                     
+ 214ms dev-disk-by\x2duuid-c3814b0a\x2dfd31\x2d4408\x2d938d\x2d70980d4a932e.swap                
+ 169ms dev-hugepages.mount                                                                      
+ 167ms dev-mqueue.mount                                                                         
+ 164ms sys-kernel-debug.mount                                                                   
+ 162ms lvm2-monitor.service                                                                     
+ 161ms sys-kernel-tracing.mount                                                                 
+ 154ms blk-availability.service                                                                 
+ 148ms systemd-tmpfiles-clean.service                                                           
+ 147ms kmod-static-nodes.service                                                                
+ 145ms snapd.apparmor.service                                                                   
+ 136ms boot-efi.mount                                                                           
+ 121ms rtkit-daemon.service                                                                     
+ 104ms systemd-remount-fs.service                                                               
+ 100ms console-setup.service                                                                    
+  86ms kerneloops.service                                                                       
+  73ms systemd-update-utmp.service                                                              
+  60ms plymouth-read-write.service                                                              
+  59ms sddm.service                                                                             
+  58ms systemd-user-sessions.service                                                            
+  52ms user-runtime-dir@1000.service                                                            
+  51ms setvtrgb.service                                                                         
+  27ms plymouth-quit.service                                                                    
+  26ms plymouth-start.service                                                                   
+  24ms systemd-update-utmp-runlevel.service                                                     
+  14ms sys-kernel-config.mount                                                                  
+  11ms sys-fs-fuse-connections.mount                                                            
+   5ms snapd.socket                                                                             

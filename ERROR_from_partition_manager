@@ -1,0 +1,5 @@
+2020-07-28 21:41:07: Using backend plugin: pmsfdiskbackendplugin (1)
+2020-07-28 21:41:07: Scanning devices...
+2020-07-28 21:41:07: Device found: WDC WD5000LPVX-22V0TT0
+2020-07-28 21:41:08: Partition ‘/dev/sda3’ is not properly aligned (last sector: 976,768,031, modulo: 1,056).
+2020-07-28 21:41:08: Scan finished.

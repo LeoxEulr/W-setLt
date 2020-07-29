@@ -1,0 +1,232 @@
+########################################################
+
+
+
+
+
+
+
+[ Power Managemente and Low Power Warning on Lubuntu ]
+https://manual.lubuntu.me/stable/3/3.2/3.2.12/power_management.html
+https://discourse.lubuntu.me/t/bug-suggestion-low-power-warning/223/4
+
+
+
+[ Boot ]
+https://en.wikipedia.org/wiki/EFI_system_partition
+
+https://discourse.lubuntu.me/t/computer-takes-3-min-booting/394/2
+https://ubuntuforums.org/showthread.php?t=2426355
+https://www.freedesktop.org/software/systemd/man/systemd-analyze.html
+~$ systemd-analyze blame
+~$ systemd-analyze critical-chain
+(...) systemd-analyze's the output might be misleading (...)
+You'll need to edit /etc/default/grub (sudo is needed)
+Change the line GRUB_CMDLINE_LINUX_DEFAULT="quiet splash" to GRUB_CMDLINE_LINUX_DEFAULT="quiet splash video=SVIDEO-1:d"
+Save and update grub (sudo update-grub).
+
+https://man7.org/linux/man-pages/man1/dmesg.1.html
+dmesg is used to examine or control the kernel ring buffer. The default action is to display all messages from the kernel ring buffer.
+https://www.howtogeek.com/449335/how-to-use-the-dmesg-command-on-linux/
+
+
+
+
+
+
+https://lubuntu.me/focal-released/ (CHECK KNOWN BUGS ON LUBUNTU) Lubuntu uses the Calamares system installer in place of the Ubiquity installer that other flavors use. 20.04 ships with Calamares 3.2.20.
+Replace Partition on Certain Partition Schemes With Calamares Fails
+Installs replacing a partition may fail with this bug (https://bugs.launchpad.net/ubuntu/+source/calamares/+bug/1864787). As a workaround; reboot, use KDE Partition Manager to delete the ‘unknown’ partition that exists, create the partition using the format you want (ext4, btrfs were tested & worked), deactivate swap partitions & exit KDE Partition Manager. Calamares can then use the prepared partition.
+
+~$ sudo apt install calamares ==> since you partitioned everything yourself!
+l@L-laptop:~$ calamares
+11:26:10 [1]: ERROR: Cowardly refusing to continue startup without settings. 
+     "/etc/calamares/settings.conf" 
+     "/usr/share/calamares/settings.conf" 
+11:26:10 [1]: ERROR: FATAL: none of the expected configuration file paths exist. 
+
+https://wiki.ubuntu.com/FocalFossa/ReleaseNotes#Known_issues
+Ubuntu now defaults to checking the integrity of the medium in use when booting into live sessions. This can be skipped by hitting Ctrl-C, but due to a bug the message that tells you to hit this key is not shown in some flavours. (bug 1870018 = https://bugs.launchpad.net/ubuntu/+source/casper/+bug/1870018) 
+
+Boot speed improvements through changing the default kernel compression algorithm to lz4 (in Ubuntu 19.10) on most architectures, and changing the default initramfs compression algorithm to lz4 on all architectures. 
+
+upgrading from 19.10
+
+For trimmed down container like isolation use-cases the new qemu has the microvm machine type which can be combined with the qboot ROM (available as bios-microvm.bin) to provide a reduced feature set at a much faster startup time. To further emphasize that you can use the package qemu-system-x86-microvm which provides an alternative QEMU binary stripped of all features not needed these use cases as sugegsted by the qboot ROM. 
+https://github.com/bonzini/qboot
+
+
+
+
+https://askubuntu.com/questions/347203/what-exactly-is-grub
+Basically, GRUB bootloader is the software that loads the Linux kernel. (It has other uses as well). It is the first software that starts at a system boot. When the computer starts, BIOS first run a Power-on self-test (POST) to check hardware like memory, disk drives and that it works properly. Then BIOS checks the Master Boot Record (MBR), which is a 512 byte section located first on the Hard Drive. It looks for a bootloader (like GRUB). The hard drive's partition tables are also located here. 
+-- Grub is the Grand Unified Boot Loader. --
+
+
+~$ nano /etc/default/grub
+~$ info -f grub -n 'Simple configuration' > info_grub
+Check info_grub file at "/home/l/Documents"
+
+
+# If you change this file, run 'update-grub' afterwards to update
+# /boot/grub/grub.cfg.
+# For full documentation of the options in this file, see:
+#   info -f grub -n 'Simple configuration'
+
+
+[@ 63%]
+'GRUB_BACKGROUND'
+     Set a background image for use with the 'gfxterm' graphical
+     terminal.  The value of this option must be a file readable by GRUB
+     at boot time, and it must end with '.png', '.tga', '.jpg', or
+     '.jpeg'.  The image will be scaled if necessary to fit the screen.
+
+'GRUB_THEME'
+     Set a theme for use with the 'gfxterm' graphical terminal.
+
+[@ 72%]====================> DID IT!
+'GRUB_DISABLE_OS_PROBER'
+     Normally, 'grub-mkconfig' will try to use the external 'os-prober'
+     program, if installed, to discover other operating systems
+     installed on the same system and generate appropriate menu entries
+     for them.  Set this option to 'true' to disable this.
+
+'GRUB_OS_PROBER_SKIP_LIST'
+     List of space-separated FS UUIDs of filesystems to be ignored from
+     os-prober output.  For efi chainloaders it's <UUID>@<EFI FILE>
+
+
+[@ 81%]
+'GRUB_PRELOAD_MODULES'
+     This option may be set to a list of GRUB module names separated by
+     spaces.  Each module will be loaded as early as possible, at the
+     start of 'grub.cfg'.
+
+'GRUB_RECORDFAIL_TIMEOUT'
+     If this option is set, it overrides the default recordfail setting.
+     A setting of -1 causes GRUB to wait for user input indefinitely.
+     However, a false positive in the recordfail mechanism may occur if
+     power is lost during boot before boot success is recorded in
+     userspace.  The default setting is 30, which causes GRUB to wait
+     for user input for thirty seconds before continuing.  This default
+     allows interactive users the opportunity to switch to a different,
+     working kernel, while avoiding a false positive causing the boot to
+     block indefinitely on headless and appliance systems where access
+     to a console is restricted or limited.
+
+     This option is only effective when GRUB was configured with the
+     '--enable-quick-boot' option.
+
+
+[@ 92%]
+'GRUB_DISABLE_INITRD'
+     Then set to 'true', this option prevents an initrd to be used at
+     boot time, regardless of whether one is detected or not.
+     'grub-mkconfig' will therefore not generate any initrd lines.
+
+
+
+
+
+https://askubuntu.com/questions/1043671/how-to-do-bios-uefi-update-on-a-ubuntu-system
+https://help.ubuntu.com/community/BIOSUpdate#Acer
+https://askubuntu.com/questions/1261876/how-to-update-the-computer-bios-firmware-without-using-windows
+https://itsfoss.com/update-firmware-ubuntu/
+sudo apt update && sudo apt upgrade -y
+sudo service fwupd start
+sudo fwupdmgr refresh
+sudo fwupdmgr update
+
+
+
+
+
+
+https://manual.lubuntu.me/stable/A/tips_and_tricks.html?highlight=grub
+
+If you want to boot an older kernel for troubleshooting use the advanced options for Lubuntu at the grub bootloader screen if shown. If you need to get into this bootloader hold down shift key at booting and then select the different kernel you want to boot into. To move down to Advanced options press Down Arrow. To select the advanced options press the Right Arrow or Enter key. To go back up a level from a submenu of grub press the Escape key.
+
+
+root@L-laptop:/# grub-install
+Installing for x86_64-efi platform.
+Installation finished. No error reported.
+root@L-laptop:/# 
+
+#################################################################################
+about:profiles   [@ FireFox's]
+https://duckduckgo.com/?q=snap+list+ubuntu&t=canonical&ia=web
+https://duckduckgo.com/?q=lubuntu+vs+ubuntu+security&t=canonical&ia=web
+https://duckduckgo.com/?q=lubuntu+20.04+privacy&t=canonical&ia=web
+https://duckduckgo.com/?q=lubuntu+20.04+security&t=canonical&ia=web
+https://askubuntu.com/questions/140742/how-do-i-change-the-desktop-name-on-the-unity-panel#225023
+https://askubuntu.com/questions/859630/how-to-start-ubuntu-in-console-mode
+https://help.ubuntu.com/stable/ubuntu-help/backup-why.html.en
+
+https://askubuntu.com/questions/1262660/issues-with-lubuntus-computer-folder-can-t-mount-file-path-is-not-mounted-a
+
+https://manual.lubuntu.me/stable/3/3.1/3.1.7/kde_partitionmanager.html
+===> You previously installed ~$ sudo apt install calamares (see above) -- if you fix your issue without it, remember to delete it. Also, it has some kind of problem due to some missing "settings.conf" files
+https://community.acer.com/en/discussion/526063/acer-aspire-e1-531-bios-download
+Change look, view, icons, text on "l" user's main folder! one letter is too small!
+
+l@L-laptop:~$ apt policy packagename
+N: Unable to locate package packagename
+fix no warning messages when battery is low -- right now the icon just turns red...
+
+sudo -i
+find / -type f -print | grep -i "grub" | xargs grep -i "GRUB_HIDDEN_TIMEOUT"
+
+
+
+l@L-laptop:~$ find . -type f -print | xargs grep -i "wlp2s0"   ====>> LOOK FOR CONTENT INSIDE FILES without specifying file_name wildcard
+
+l@L-laptop:~/Documents$ find . -type f -print | xargs grep -i "perf"
+./mount_output:cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)
+./dmesg_output:[    0.170108] Performance Events: PEBS fmt2+, 8-deep LBR, Silvermont events, 8-deep LBR, full-width counters, Intel PMU driver.
+./dmesg_output:[    0.182678] ENERGY_PERF_BIAS: Set to 'normal', was 'performance'
+./dmesg_output:[ 2911.848257] perf: interrupt took too long (2513 > 2500), lowering kernel.perf_event_max_sample_rate to 79500
+./dmesg_output:[ 3895.732730] perf: interrupt took too long (3162 > 3141), lowering kernel.perf_event_max_sample_rate to 63250
+./dmesg_output:[ 5338.957142] perf: interrupt took too long (3968 > 3952), lowering kernel.perf_event_max_sample_rate to 50250
+./dmesg_output:[ 7517.470058] perf: interrupt took too long (4979 > 4960), lowering kernel.perf_event_max_sample_rate to 40000
+
+
+
+
+sudo dmesg --follow
+[ 2235.873766] perf: interrupt took too long (2533 > 2500), lowering kernel.perf_event_max_sample_rate to 78750
+
+
+
+root@L-laptop:/boot/efi/EFI/ubuntu# efibootmgr
+BootCurrent: 0004
+Timeout: 0 seconds
+BootOrder: 0004,0001,0003,2001,2002,2003
+Boot0001* UbuntuGrub
+Boot0002* ubuntu
+Boot0003* UbuntuUmmx64efi             [] TWO UBUNTUS! WTF? FIX THIS!
+Boot0004* Ubuntu
+Boot0007* Windows Boot Manager
+Boot000E* EFI USB Device
+Boot000F* EFI DVD/CDROM
+Boot0010* EFI Network
+Boot0011* Windows Boot Manager
+Boot0015* Windows Boot Manager
+
+
+
+https://askubuntu.com/questions/195983/how-to-copy-files-via-terminal
+
+
+
+l@L-laptop:/dev$ ls -l /dev/disk/by-uuid/
+total 0
+lrwxrwxrwx 1 root root 10 Jul 28 21:01 333ed8f7-0171-4540-a729-c824b1739ba0 -> ../../sda1
+lrwxrwxrwx 1 root root 10 Jul 28 21:01 49a86d91-c217-4268-9014-90c563913ebf -> ../../sda3
+lrwxrwxrwx 1 root root 10 Jul 28 21:01 c3814b0a-fd31-4408-938d-70980d4a932e -> ../../sda2
+lrwxrwxrwx 1 root root 10 Jul 28 21:01 D66D-E466 -> ../../sda4
+l@L-laptop:/dev$ sudo blkid
+/dev/sda1: UUID="333ed8f7-0171-4540-a729-c824b1739ba0" TYPE="ext4" PARTUUID="2d2dbbf7-fa54-de4f-a822-cd2b7ef42cd4"
+/dev/sda2: UUID="c3814b0a-fd31-4408-938d-70980d4a932e" TYPE="swap" PARTUUID="23c14323-43d5-f145-b182-cd0861031ae6"
+/dev/sda3: UUID="49a86d91-c217-4268-9014-90c563913ebf" TYPE="ext4" PARTUUID="9927c487-edba-e945-b5e7-0b8bbb4c1440"
+/dev/sda4: UUID="D66D-E466" TYPE="vfat" PARTUUID="0d54cb5f-6651-6a46-b004-aa6fe3df9bab"
+l@L-laptop:/dev$ 

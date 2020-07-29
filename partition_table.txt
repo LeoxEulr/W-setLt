@@ -1,0 +1,10 @@
+##|v1|## partition table of /dev/sda
+# on Tuesday, 28 July 2020 21:46:01 EDT
+type: "gpt"
+align: "sector"
+
+# number start end type roles label flags
+1;1050624;52250623;ext4;primary;"";""
+2;52250624;60852223;linuxswap;primary;"";""
+3;60852224;976768031;ext4;primary;"";""
+4;2048;1050623;fat32;primary;"";""
